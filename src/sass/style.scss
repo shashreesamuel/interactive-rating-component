@@ -54,7 +54,7 @@ body{
     background-color: $dark-blue;
 }
 
-input[type="submit"]{
+.submit-btn{
     background-color: $orange;
     margin-block-start: 2em;
     padding: 1em;
@@ -72,4 +72,11 @@ input[type="submit"]{
 
 .active-rating{
     background-color: $orange;
+}
+
+@media only screen and ( max-width: 1440px ){
+    .container{
+        height: fit-content;
+        width: fit-content;
+    }
 }

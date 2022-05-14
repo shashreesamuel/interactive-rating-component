@@ -9,7 +9,7 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./images/favicon-32x32.png"
+      href="./assets/images/favicon-32x32.png"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,36 +24,48 @@
   <body>
     <!-- Rating state start -->
     <main class="container">
-      <img src="./assets/images/icon-star.svg" alt="">
+      <img src="./assets/images/icon-star.svg" alt="" />
       <h1 class="container__title">How did we do?</h1>
       <p class="container__description">
         Please let us know how we did with your support request. All feedback is
         appreciated to help us improve our offering!
       </p>
       <div class="input-group">
-        <input type="button" value="1" id="one" />
-        <input type="button" value="2" id="two" />
-        <input type="button" value="3" id="three" />
-        <input type="button" value="4" id="four" />
-        <input type="button" value="5" id="five" />
+        <form action="#thank-container">
+          <input class="btn" type="button" value="1" id="one" />
+          <input class="btn" type="button" value="2" id="two" />
+          <input class="btn" type="button" value="3" id="three" />
+          <input class="btn" type="button" value="4" id="four" />
+          <input class="btn" type="button" value="5" id="five" />
+        </form>
       </div>
-      <input onclick="processSelection()" type="submit" value="Submit" />
+      <input
+        class="submit-btn"
+        onclick="processSelection()"
+        type="submit"
+        value="Submit"
+      />
     </main>
 
     <!-- Rating state end -->
 
     <!-- Thank you state start -->
-    <div class="thank-container">
-      <p> You selected
-    out of 5 Thank you! We appreciate you taking the time to give a rating. If
+
+    <dialog class="modal">
+      <img src="./assets/images/illustration-thank-you.svg" alt="">
+      <p>
+        You selected <span id="selected-rating"></span> out of 5
+      </p>
+      <h1>Thank you!</h1>
+      <p>We appreciate you taking the time to give a rating. If
     you ever need more support, don’t hesitate to get in touch!</p>
-    </div>
-    
+    <button class="close-btn">Close</button>
+    </dialog>
     <!-- You selected
     out of 5 Thank you! We appreciate you taking the time to give a rating. If
     you ever need more support, don’t hesitate to get in touch! -->
 
     <!-- Thank you state end -->
-    <script  src="./script.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
