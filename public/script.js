@@ -1,43 +1,55 @@
-let buttons = document.querySelectorAll(".btn");
-let modal = document.querySelector(".modal");
-let submitButton = document.querySelector(".submit-btn");
-let mainContainer = document.querySelector("body");
-let ratingGroup = document.querySelector(".rating-group");
+// selector
+const rateNumber = document.querySelectorAll(".ratebtn");
+const submitBtn = document.querySelector(".submit");
 
-// Function responsible for displaying the text on the screen
-
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    btn.classList.add("active-rating");
-    document.getElementById("selected-rating").innerHTML = btn.value;
-
-    const submitted = () => {
-      const htmlText = `<div class="rating-group">
-      <img src="./assets/images/illustration-thank-you.svg" alt="" />
-      <p>You selected <span id="selected-rating"></span> out of 5</p>
-      <h1>Thank you!</h1>
-      <p>
-        We appreciate you taking the time to give a rating. If you ever need
-        more support, don’t hesitate to get in touch!
-      </p>
-    </div>`;
-
-      mainContainer.innerHTML = htmlText;
-    };
-  });
-  submitButton.addEventListener("click", () => {
-    submitted();
-  });
+// event
+rateNumber.forEach((rate) => {
+  rate.addEventListener("click", getRateNumber);
 });
 
-processSelection();
+function getRateNumber(event) {
+  addActive(event.target);
+  let ratingNum = event.target.innerText;
+  thankRating(ratingNum);
+}
 
-// Function responsible for opening and closing the modal
+function thankRating(rate) {
+  let thankHTML = `
+       <div class="thank__container">
+      <div class="thank__wrap">
+        <div class="thankIcon">
+          <img src="./assets/images/illustration-thank-you.svg" alt="thank you" class="thank__svg" />
+        </div>
+        <article class="thank__content">
+          <p>You selected ${rate} out of 5</p>
+          <h1>Thank you!</h1>
+          <p>We appreciate you taking the time to give a rating. If you ever need more support, don’t hesitate to get in touch!</p>
+        </article>
+      </div>
+    </div>
+    
+    `;
+  insertThankYou(thankHTML);
+}
 
-// openModal.addEventListener("click", () => {
-//   modal.show();
-// })
+function removeActive() {
+  let removeActiveRate = document.querySelector(".active");
+  if (removeActiveRate) {
+    removeActiveRate.classList.remove("active");
+  }
+}
 
-// closeModal.addEventListener("click", () => {
-//   modal.close();
-// })
+function addActive(active) {
+  removeActive();
+  if (!active.classList.contains("active")) {
+    active.classList.add("active");
+  }
+}
+
+function insertThankYou(thankHtml) {
+  submitBtn.addEventListener("click", () => {
+      document.querySelector(".interactiveRating").innerHTML = thankHtml;
+    },
+    { once: true },
+  );
+}
